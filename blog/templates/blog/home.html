@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  {% load staticfiles %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -56,7 +57,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
           <a class="nav-item nav-link" href="https://www.linkedin.com/in/nikhil-kumar-6002a750/" target="_blank">LinkedIn</a>
-          <a class="nav-item nav-link" href="#">Resume</a>
+          <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
           <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
           <!-- <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
         </div>
@@ -81,11 +82,13 @@
       <div class="row no-gutters">
 
         <div class="col-md-4">
-          <img src="{{blog.image.url}}" class="card-img image-fluid" alt="..."/>
+          <img src="{{blog.image.url}}" class="card-img image-fluid" alt="..." />
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <a href=""><h5 class="card-title">{{blog.title}}</h5></a>
+            <a href="{% url 'detail' blog.id %}">
+              <h5 class="card-title">{{blog.title}}</h5>
+            </a>
             <p class="card-text">{{blog.summary}}</p>
             <p class="card-text"><small class="text-muted">Published on: {{blog.date_pretty}}</small></p>
           </div>
